@@ -20,6 +20,8 @@
 
 plugins {
     `java-library`
+
+    id("org.sonarqube") version "4.4.1.3373"
 }
 
 val javaVersion: String by project

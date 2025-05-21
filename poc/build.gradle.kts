@@ -21,7 +21,7 @@
 plugins {
     `java-library`
 
-    id("org.sonarqube") version "4.4.1.3373"
+    id ("org.sonarqube") version "6.2.0.5505"
 }
 
 val javaVersion: String by project
@@ -46,6 +46,12 @@ allprojects {
     repositories {
         mavenLocal()
         mavenCentral()
+    }
+}
+
+sonar {
+    properties {
+        property("sonar.host.url", "https://sonarcloud.io")
     }
 }
 

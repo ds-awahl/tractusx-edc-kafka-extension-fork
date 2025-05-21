@@ -40,6 +40,22 @@ on:
       - '**'
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build with Gradle
+        working-directory: poc
+        run: ./gradlew build
+
   check_sonar_configured:
     runs-on: ubuntu-latest
     steps:
@@ -87,7 +103,6 @@ jobs:
           # --no-daemon keeps CI logs shorter; drop it if you prefer the daemon
           ./gradlew build sonar \
             -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }} \
-            -Dsonar.organization=${{ vars.SONAR_ORGANIZATION }} \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.token=$SONAR_TOKEN \
             -Dcheckstyle.skip=true -Dpmd.skip=true

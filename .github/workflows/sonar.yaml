@@ -109,5 +109,5 @@ jobs:
           ./gradlew --no-daemon build sonar \
             -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }} \
             -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=$SONAR_TOKEN \
+            -Dsonar.token=$SONAR_TOKEN \
             -Dcheckstyle.skip=true -Dpmd.skip=true

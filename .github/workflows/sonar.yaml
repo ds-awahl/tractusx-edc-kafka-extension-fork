@@ -100,6 +100,7 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar
 
       - name: Build & analyze with Sonar
+        working-directory: poc
         env: # SONAR_TOKEN stays masked in the log
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

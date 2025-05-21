@@ -106,8 +106,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           # --no-daemon keeps CI logs shorter; drop it if you prefer the daemon
-          ./gradlew  clean sonar \
-            --stacktrace --info -Dsonar.verbose=true
+          ./gradlew --no-daemon build sonar \
             -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }} \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.token=$SONAR_TOKEN \

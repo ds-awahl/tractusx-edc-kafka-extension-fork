@@ -59,6 +59,11 @@ jobs:
   check_sonar_configured:
     runs-on: ubuntu-latest
     steps:
+      - name: Show whether each SONAR variable is set
+        run: |
+          echo "SONAR_TOKEN present?        ${{ secrets.SONAR_TOKEN     != '' }}"
+          echo "SONAR_PROJECT_KEY present? ${{ vars.SONAR_PROJECT_KEY  != '' }}"
+          echo "SONAR_ORGANIZATION present? ${{ vars.SONAR_ORGANIZATION != '' }}"
       - name: check_sonar_configured
         run: |
           echo "Checking if sonar is configured: ${{ env.SONAR_CONFIGURED }}"

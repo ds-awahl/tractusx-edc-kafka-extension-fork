@@ -27,6 +27,13 @@ plugins {
 
 val javaVersion: String by project
 
+project.subprojects.forEach {
+    dependencies {
+        jacocoAggregation(project(it.path))
+    }
+
+}
+
 allprojects {
     apply(plugin = "java")
 
@@ -47,13 +54,6 @@ allprojects {
     repositories {
         mavenLocal()
         mavenCentral()
-    }
-}
-
-tasks.named<JacocoReport>("testCodeCoverageReport") {
-    reports {
-        xml.required.set(true)
-        html.required.set(true)
     }
 }
 

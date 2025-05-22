@@ -100,6 +100,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
+          ./gradlew --no-daemon build testCodeCoverageReport
+          cd build
+          ls
+          cd reports
+          ls
+          cd testCodeCoverageReport
+          ls
           # --no-daemon keeps CI logs shorter; drop it if you prefer the daemon
           ./gradlew --no-daemon build testCodeCoverageReport sonar \
             -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }} \

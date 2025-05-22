@@ -20,11 +20,19 @@
 
 plugins {
     `java-library`
-
+    jacoco
+    `jacoco-report-aggregation`
     id ("org.sonarqube") version "6.2.0.5505"
 }
 
 val javaVersion: String by project
+
+project.subprojects.forEach {
+    dependencies {
+        jacocoAggregation(project(it.path))
+    }
+
+}
 
 allprojects {
     apply(plugin = "java")
@@ -49,6 +57,10 @@ allprojects {
     }
 }
 
+tasks.check {
+    dependsOn(tasks.named<JacocoReport>("testCodeCoverageReport"))
+}
+
 subprojects {
-    tasks.register<DependencyReportTask>("allDependencies"){}
+    tasks.register<DependencyReportTask>("allDependencies") {}
 }

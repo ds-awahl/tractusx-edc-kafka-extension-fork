@@ -107,6 +107,8 @@ jobs:
           ls
           cd jacoco
           ls
+          cd testCodeCoverageReport
+          ls
           # --no-daemon keeps CI logs shorter; drop it if you prefer the daemon
           ./gradlew --no-daemon build testCodeCoverageReport sonar \
             -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }} \
